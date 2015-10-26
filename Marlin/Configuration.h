@@ -107,7 +107,7 @@
 #define TEMP_SENSOR_0 10
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
-#define TEMP_SENSOR_BED 8
+#define TEMP_SENSOR_BED 7
 
 // This makes temp sensor 1 a redundant sensor for sensor 0. If the temperatures difference between these sensors is to high the print will be aborted.
 //#define TEMP_SENSOR_1_AS_REDUNDANT
@@ -160,9 +160,9 @@
 
 // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 // Huxley
-    #define  DEFAULT_Kp 12.0
-    #define  DEFAULT_Ki (2.2*PID_dT)
-    #define  DEFAULT_Kd (80/PID_dT)
+    #define  DEFAULT_Kp 14.16
+    #define  DEFAULT_Ki 1.20
+    #define  DEFAULT_Kd 41.76
 
 // Ultimaker
 //    #define  DEFAULT_Kp 22.2
@@ -190,9 +190,9 @@
 // If your configuration is significantly different than this and you don't understand the issues involved, you probably
 // shouldn't use bed PID until someone else verifies your hardware works.
 // If this is enabled, find your own PID constants below.
-//#define PIDTEMPBED
+#define PIDTEMPBED
 //
-//#define BED_LIMIT_SWITCHING
+#define BED_LIMIT_SWITCHING
 
 // This sets the max power delivered to the bed, and replaces the HEATER_BED_DUTY_CYCLE_DIVIDER option.
 // all forms of bed control obey this (PID, bang-bang, bang-bang with hysteresis)
@@ -201,11 +201,16 @@
 #define MAX_BED_POWER 255 // limits duty cycle to bed; 255=full current
 
 #ifdef PIDTEMPBED
+// Huxley 2012-02
+    #define  DEFAULT_bedKp 345.30
+    #define  DEFAULT_bedKi 67.99
+    #define  DEFAULT_bedKd 438.45
+
 //120v 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
 //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-    #define  DEFAULT_bedKp 10.00
-    #define  DEFAULT_bedKi .023
-    #define  DEFAULT_bedKd 305.4
+//    #define  DEFAULT_bedKp 10.00
+//    #define  DEFAULT_bedKi .023
+//    #define  DEFAULT_bedKd 305.4
 
 //120v 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
 //from pidautotune
